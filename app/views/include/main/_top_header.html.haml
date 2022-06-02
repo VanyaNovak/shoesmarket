@@ -1,0 +1,48 @@
+.top-header
+  .container
+    .top-header-main
+      .col-md-6.top-header-left
+        .drop
+          .btn-group
+            %a.dropdown-toggle{"aria-expanded" => "true", "data-toggle" => "dropdown"}
+              Аккаунт
+              %span.caret
+            %ul#account-dropdown.dropdown-menu
+              - if user_signed_in?
+                - if current_user.try(:admin?)
+                  %li
+                    %a{style: "color: red;"}
+                      Administrator
+                  %li
+                    = link_to 'Admin Page', '/admin', style: "color: green;"
+                  %li
+                    = link_to 'API', '/oauth/applications', style: "color: blue;"
+                  %li.dropdown-divider
+                %li
+                  %a
+                    Вітаю, #{current_user.email}
+                %li.dropdown-divider
+                %li
+                  = link_to 'Edit', edit_user_registration_path
+                %li
+                  = link_to 'Sign Out', destroy_user_session_path, method: :delete
+              - else
+                %li
+                  = link_to 'Sign In', new_user_session_path
+                %li
+                  = link_to 'Sign Up', new_user_registration_path
+          .clearfix
+      .col-md-6.top-header-left
+        - if current_user
+          .cart.box_1
+            %a{:href => "/cart", :onclick => "getCart(); return false;"}
+              .total
+                = image_tag 'cart-1.png', alt: 'Cart'
+                %span.simpleCart1_total
+                  - if current_cart.empty?
+                    Кошик порожній
+                  - else
+                    = format('%.2f', current_cart.total_price)
+                    $
+            .clearfix
+      .clearfix

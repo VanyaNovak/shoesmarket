@@ -1,0 +1,33 @@
+.information
+  .container
+    .infor-top
+      .col-md-3.infor-left
+        %h3 Підписуйся на нас
+        %ul
+          %li
+            %a{:href => "#"}
+              %span.fb
+              %h6 Facebook
+          %li
+            %a{:href => "#"}
+              %span.twit
+              %h6 Twitter
+      .clearfix
+.footer
+  .container
+    .footer-top
+      .col-md-6.footer-right
+        %p © 2022 SHOESMARKET by Ivan Novak, TEF, TV-z01
+      .clearfix
+#cart.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Cart
+      .modal-body
+      .modal-footer
+        %button.btn.btn-default-outline{"data-dismiss" => "modal", :type => "button"} Продовжити покупки
+        %a.btn.btn-primary{:href => "/", :type => "button"} Оформити замовлення
+        %button.btn.btn-danger{:onclick => "clearCart()", :type => "button"} Очистити кошик

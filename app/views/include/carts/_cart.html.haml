@@ -1,0 +1,41 @@
+- if current_user
+  - if products.present?
+    .table-responsive
+      %table.table.table-hover.table-striped
+        %thead
+          %tr
+            %th Image
+            %th Назва
+            %th Кількість
+            %th Ціна
+            %th
+              %span{"aria-hidden" => "true"}✖
+        %tbody
+          - products.each do |item|
+            %tr
+              %td
+                - if item.product.img.nil?
+                  = link_to item.product.title, product_path(item)
+                - else
+                  = link_to image_tag('products/' + item.product.img), product_path(item)
+              %td= link_to item.product.title, product_path(item.product)
+              %td
+                = item.quantity
+                шт.
+              %td= item.product.price
+              %td
+                %span.text-danger.del-item{"aria-hidden" => "true", "data-id" => "#{item.id}"}✖
+          %tr
+            %td Загальна кількість:
+            %td.text-right.cart-qty{:colspan => "4"}
+              = current_cart.total_quantity
+              шт.
+          %tr
+            %td Загальна сума:
+            %td.text-right.cart-sum{:colspan => "4"}
+              = format('%.2f', current_cart.total_price)
+              $
+  - else
+    %h3 Кошик порожній
+- else
+  %span Будь ласка увійдіть для перегляду корзини

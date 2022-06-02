@@ -1,0 +1,20 @@
+default: &default
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  adapter: sqlite3
+  database: yetanothershop_development
+
+test:
+  <<: *default
+  database: yetanothershop_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  database: yetanothershop_production
+  username: yetanothershop
+  host: localhost
+  password: <%= ENV['SHOESHOP_DATABASE_PASSWORD'] %>

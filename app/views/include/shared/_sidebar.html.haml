@@ -1,0 +1,5 @@
+= simple_form_for :search, url: product_index_path, method: "GET" do |f|
+  = f.input :categories, label: "Категорія", collection: Category.all.map(&:title), as: :check_boxes
+  = f.input :brands, label: "Бренд", collection: Brand.all.map(&:title), as: :check_boxes
+  = f.submit "Пошук", class: "btn btn-primary"
+  = link_to "Reset", product_index_path

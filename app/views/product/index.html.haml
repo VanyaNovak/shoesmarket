@@ -1,0 +1,24 @@
+/ start-breadcrumbs
+.breadcrumbs
+  .container
+    .breadcrumbs-main
+      %ol.breadcrumb
+        %li
+          %a{:href => "/"} Головна
+        %li Всі товари
+/ end-breadcrumbs
+/ prdt-starts
+.prdt
+  .container
+    .prdt-top
+      .col-md-9.prdt-left
+        - if @products.empty?
+          %h3 Nothing to show
+        - else
+          = render 'include/product/products', products: @products
+          .text-center
+            != pagy_bootstrap_nav_js(@pagy)
+      .col-md-3.prdt-right
+        = render 'include/shared/sidebar'
+      .clearfix
+/ prdt-ends
